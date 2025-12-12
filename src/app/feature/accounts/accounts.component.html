@@ -1,0 +1,39 @@
+<app-header></app-header>
+<div class="max-w-4xl mx-auto p-6">
+  <div class="flex items-center justify-between mb-6">
+    <h2 class="text-2xl font-bold text-gray-800">Your Accounts</h2>
+
+    <button
+      (click)="loadAccounts()"
+      [disabled]="loading"
+      class="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 disabled:opacity-50 transition-colors"
+    >
+      {{ loading ? 'Loading...' : 'Refresh' }}
+    </button>
+  </div>
+
+  <div class="grid gap-4" *ngIf="accounts.length > 0; else noAccounts">
+    <div
+      *ngFor="let account of accounts"
+      (click)="selectAccount(account.id)"
+      class="bg-white rounded-lg shadow-md p-6 cursor-pointer hover:shadow-lg transition-shadow border border-gray-200"
+    >
+      <div class="flex items-center justify-between">
+        <div>
+          <h3 class="text-xl font-semibold text-gray-800">{{ account.name }}</h3>
+          <p class="text-gray-500 text-sm mt-1">{{ account.accountNumber }}</p>
+        </div>
+        <div class="text-right">
+          <p class="text-2xl font-bold text-gray-800">
+            {{ account.currency }}{{ account.balance != null ? (+account.balance).toFixed(2) : '0.00' }}
+          </p>
+          <p class="text-gray-500 text-sm mt-1">Available Balance</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <ng-template #noAccounts>
+    <p class="text-gray-500">No accounts available.</p>
+  </ng-template>
+</div>
