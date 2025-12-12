@@ -4,7 +4,6 @@ import { Router } from '@angular/router';
 import { AccountService } from '../../core/services/account.service';
 import { HeaderComponent } from '../../shared/components/header/header.component';
 import { Account } from '../../core/models/account.model';
-import {TransactionsComponent} from '../transactions/transactions.component';
 
 @Component({
   selector: 'app-accounts',
